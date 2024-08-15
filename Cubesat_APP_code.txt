@@ -1,0 +1,1491 @@
+classdef Cubesat_APP < matlab.apps.AppBase
+
+    % Properties that correspond to app components
+    properties (Access = public)
+        UIFigure                        matlab.ui.Figure
+        Menu                            matlab.ui.container.Menu
+        TiempoSimsEditField             matlab.ui.control.NumericEditField
+        TiempoSimsEditFieldLabel        matlab.ui.control.Label
+        Image                           matlab.ui.control.Image
+        ResetearButton                  matlab.ui.control.Button
+        SimOrientacionButton            matlab.ui.control.Button
+        TiemposSlider                   matlab.ui.control.Slider
+        TiemposSliderLabel              matlab.ui.control.Label
+        ParmetrosdeCubeSatyrbitaLabel   matlab.ui.control.Label
+        AlturadelPeriheliokmEditField   matlab.ui.control.NumericEditField
+        AlturadelPeriheliokmEditFieldLabel  matlab.ui.control.Label
+        AlturadelAfeliokmEditField      matlab.ui.control.NumericEditField
+        AlturadelAfeliokmEditFieldLabel  matlab.ui.control.Label
+        ExcentricidadEditField          matlab.ui.control.NumericEditField
+        ExcentricidadEditFieldLabel     matlab.ui.control.Label
+        SemiejeMayorkmEditField         matlab.ui.control.NumericEditField
+        SemiejeMayorkmEditFieldLabel    matlab.ui.control.Label
+        VelocidadkmsEditField           matlab.ui.control.NumericEditField
+        VelocidadkmsEditFieldLabel      matlab.ui.control.Label
+        ResultadosOrbitalesydeActitudLabel  matlab.ui.control.Label
+        TiemposEditField                matlab.ui.control.NumericEditField
+        TiemposEditFieldLabel           matlab.ui.control.Label
+        Lamp_8                          matlab.ui.control.Lamp
+        Lamp_7                          matlab.ui.control.Lamp
+        Lamp_6                          matlab.ui.control.Lamp
+        Lamp_5                          matlab.ui.control.Lamp
+        Lamp_4                          matlab.ui.control.Lamp
+        Lamp_3                          matlab.ui.control.Lamp
+        Lamp_2                          matlab.ui.control.Lamp
+        Lamp                            matlab.ui.control.Lamp
+        TiempoInicialTh8EditField       matlab.ui.control.NumericEditField
+        TiempoInicialTh8EditFieldLabel  matlab.ui.control.Label
+        Thruster8Switch                 matlab.ui.control.Switch
+        Thruster8SwitchLabel            matlab.ui.control.Label
+        TiempoFinalTh8EditField         matlab.ui.control.NumericEditField
+        TiempoFinalTh8EditFieldLabel    matlab.ui.control.Label
+        TiempoInicialTh6EditField       matlab.ui.control.NumericEditField
+        TiempoInicialTh6EditFieldLabel  matlab.ui.control.Label
+        Thruster6Switch                 matlab.ui.control.Switch
+        Thruster6SwitchLabel            matlab.ui.control.Label
+        TiempoFinalTh6EditField         matlab.ui.control.NumericEditField
+        TiempoFinalTh6EditFieldLabel    matlab.ui.control.Label
+        TiempoInicialTh7EditField       matlab.ui.control.NumericEditField
+        TiempoInicialTh7EditFieldLabel  matlab.ui.control.Label
+        Thruster7Switch                 matlab.ui.control.Switch
+        Thruster7SwitchLabel            matlab.ui.control.Label
+        TiempoFinalTh7EditField         matlab.ui.control.NumericEditField
+        TiempoFinalTh7EditFieldLabel    matlab.ui.control.Label
+        TiempoInicialTh5EditField       matlab.ui.control.NumericEditField
+        TiempoInicialTh5EditFieldLabel  matlab.ui.control.Label
+        Thruster5Switch                 matlab.ui.control.Switch
+        Thruster5SwitchLabel            matlab.ui.control.Label
+        TiempoFinalTh5EditField         matlab.ui.control.NumericEditField
+        TiempoFinalTh5EditFieldLabel    matlab.ui.control.Label
+        TiempoInicialTh4EditField       matlab.ui.control.NumericEditField
+        TiempoInicialTh4EditFieldLabel  matlab.ui.control.Label
+        Thruster4Switch                 matlab.ui.control.Switch
+        Thruster4SwitchLabel            matlab.ui.control.Label
+        TiempoFinalTh4EditField         matlab.ui.control.NumericEditField
+        TiempoFinalTh4EditFieldLabel    matlab.ui.control.Label
+        TiempoInicialTh3EditField       matlab.ui.control.NumericEditField
+        TiempoInicialTh3EditFieldLabel  matlab.ui.control.Label
+        Thruster3Switch                 matlab.ui.control.Switch
+        Thruster3SwitchLabel            matlab.ui.control.Label
+        TiempoFinalTh3EditField         matlab.ui.control.NumericEditField
+        TiempoFinalTh3EditFieldLabel    matlab.ui.control.Label
+        TiempoInicialTh2EditField       matlab.ui.control.NumericEditField
+        TiempoInicialTh2EditField_2Label  matlab.ui.control.Label
+        Thruster2Switch                 matlab.ui.control.Switch
+        Thruster2Switch_2Label          matlab.ui.control.Label
+        TiempoFinalTh2EditField         matlab.ui.control.NumericEditField
+        TiempoFinalTh2EditField_2Label  matlab.ui.control.Label
+        Thruster1Switch                 matlab.ui.control.Switch
+        Thruster1SwitchLabel            matlab.ui.control.Label
+        SimularButton                   matlab.ui.control.Button
+        TiempoFinalTh1EditField         matlab.ui.control.NumericEditField
+        TiempoFinalTh1EditFieldLabel    matlab.ui.control.Label
+        TiempoInicialTh1EditField       matlab.ui.control.NumericEditField
+        TiempoInicialTh1EditFieldLabel  matlab.ui.control.Label
+        UsodeThrustersLabel             matlab.ui.control.Label
+        TrayectoriainicialgradosEditField  matlab.ui.control.NumericEditField
+        TrayectoriainicialgradosEditFieldLabel  matlab.ui.control.Label
+        RollinicialgradosEditField      matlab.ui.control.NumericEditField
+        RollinicialgradosEditFieldLabel  matlab.ui.control.Label
+        PitchinicialgradosEditField     matlab.ui.control.NumericEditField
+        PitchinicialgradosEditFieldLabel  matlab.ui.control.Label
+        YawinicialgradosEditField       matlab.ui.control.NumericEditField
+        YawinicialgradosEditFieldLabel  matlab.ui.control.Label
+        LongitudEjeYmEditField          matlab.ui.control.NumericEditField
+        LongitudEjeYmEditFieldLabel     matlab.ui.control.Label
+        LongitudEjeZmEditField          matlab.ui.control.NumericEditField
+        LongitudEjeZmEditFieldLabel     matlab.ui.control.Label
+        LongitudEjeXmEditField          matlab.ui.control.NumericEditField
+        LongitudEjeXmEditFieldLabel     matlab.ui.control.Label
+        MasadelCubesatKgEditField       matlab.ui.control.NumericEditField
+        MasadelCubesatKgEditFieldLabel  matlab.ui.control.Label
+        AltitudkmEditField              matlab.ui.control.NumericEditField
+        AltitudkmEditFieldLabel         matlab.ui.control.Label
+        FuerzaThrustersNEditField       matlab.ui.control.NumericEditField
+        FuerzaThrustersNLabel           matlab.ui.control.Label
+        OrientacionCubesat              matlab.ui.control.UIAxes
+        RollEv                          matlab.ui.control.UIAxes
+        YawEv                           matlab.ui.control.UIAxes
+        PitchEv                         matlab.ui.control.UIAxes
+        TrayectoriaOrb                  matlab.ui.control.UIAxes
+        VelocidadOrb                    matlab.ui.control.UIAxes
+    end
+
+
+    properties (Access = private)
+        x_axis   = [1; 0; 0];
+        y_axis   = [0; 1; 0];
+        z_axis   = [0; 0; 1];
+        nu_axis  = [1.5; 1.5; 1.5];
+        roll     % Roll data
+        pitch    % Pitch data
+        yaw      % Yaw data
+        nu       % nu data
+        time     % Time data
+        num_steps
+        hX
+        hY
+        hZ
+        hOrbit
+        th1use
+        th2use
+        th3use
+        th4use
+        th5use
+        th6use
+        th7use
+        th8use
+    end
+
+    methods (Access = private)
+
+        function updatePlot(app,idx)
+            % Asegurar que el índice esté dentro de los límites válidos
+            if idx < 1
+                idx = 1;
+            elseif idx > length(app.time)
+                idx = length(app.time);
+            end
+
+            % Convertir ángulos de Euler a matriz de rotación
+            R = app.eulerToRotationMatrix(app.roll(idx), app.pitch(idx), app.yaw(idx));
+
+            Rorb = [cos(app.nu(idx)), -sin(app.nu(idx)), 0;
+                  sin(app.nu(idx)), cos(app.nu(idx)), 0;
+                  0, 0, 1];
+
+            % Obtener la posición de los ejes y órbita en el sistema de referencia global
+            x_global = R * app.x_axis;
+            y_global = R * app.y_axis;
+            z_global = R * app.z_axis;
+            nu_global = Rorb * app.nu_axis;
+
+            % Actualizar los vectores en el gráfico
+            set(app.hX, 'UData', x_global(1), 'VData', x_global(2), 'WData', x_global(3));
+            set(app.hY, 'UData', y_global(1), 'VData', y_global(2), 'WData', y_global(3));
+            set(app.hZ, 'UData', z_global(1), 'VData', z_global(2), 'WData', z_global(3));
+            set(app.hOrbit, 'UData', nu_global(1), 'VData', 0, 'WData', 0);
+        end
+
+        function R = eulerToRotationMatrix(~, roll, pitch, yaw)
+            Rz = [cos(yaw), -sin(yaw), 0;
+                  sin(yaw), cos(yaw), 0;
+                  0, 0, 1];
+
+            Ry = [cos(pitch), 0, sin(pitch);
+                  0, 1, 0;
+                  -sin(pitch), 0, cos(pitch)];
+
+            Rx = [1, 0, 0;
+                  0, cos(roll), -sin(roll);
+                  0, sin(roll), cos(roll)];
+
+            R = Rz * Ry * Rx;
+        end
+    end
+    
+
+    % Callbacks that handle component events
+    methods (Access = private)
+
+        % Code that executes after component creation
+        function startupFcn(app)
+            load_system('CubeSat01');
+            find_system;
+            %open_system;
+
+            set_param(gcs, 'StopTime', '10');
+            set_param([gcs,'/F'], 'Value', '1');
+            set_param([gcs,'/Altitud'], 'Value', '1000');
+            set_param([gcs,'/Mcubesat'], 'Value', '5');
+            set_param([gcs,'/Lx'], 'Value', '0.1');
+            set_param([gcs,'/Ly'], 'Value', '0.1');
+            set_param([gcs,'/Lz'], 'Value', '0.1');
+            set_param([gcs,'/Yaw'], 'Value', '0');
+            set_param([gcs,'/Pitch'], 'Value', '0');
+            set_param([gcs,'/Roll'], 'Value', '0');
+            set_param([gcs,'/Deltai'], 'Value', '0');
+            set_param([gcs,'/Calc_torque/ti_th1'], 'Time', '0');
+            set_param([gcs,'/Calc_torque/tf_th1'], 'Time', '0');
+            set_param([gcs,'/Calc_torque/ti_th2'], 'Time', '0');
+            set_param([gcs,'/Calc_torque/tf_th2'], 'Time', '0');
+            set_param([gcs,'/Calc_torque/ti_th3'], 'Time', '0');
+            set_param([gcs,'/Calc_torque/tf_th3'], 'Time', '0');
+            set_param([gcs,'/Calc_torque/ti_th4'], 'Time', '0');
+            set_param([gcs,'/Calc_torque/tf_th4'], 'Time', '0');
+            set_param([gcs,'/Calc_torque/ti_th5'], 'Time', '0');
+            set_param([gcs,'/Calc_torque/tf_th5'], 'Time', '0');
+            set_param([gcs,'/Calc_torque/ti_th6'], 'Time', '0');
+            set_param([gcs,'/Calc_torque/tf_th6'], 'Time', '0');
+            set_param([gcs,'/Calc_torque/ti_th7'], 'Time', '0');
+            set_param([gcs,'/Calc_torque/tf_th7'], 'Time', '0');
+            set_param([gcs,'/Calc_torque/ti_th8'], 'Time', '0');
+            set_param([gcs,'/Calc_torque/tf_th8'], 'Time', '0');
+            set_param([gcs,'/Calc_fuerza/ti_th1'], 'Time', '0');
+            set_param([gcs,'/Calc_fuerza/tf_th1'], 'Time', '0');
+            set_param([gcs,'/Calc_fuerza/ti_th2'], 'Time', '0');
+            set_param([gcs,'/Calc_fuerza/tf_th2'], 'Time', '0');
+            set_param([gcs,'/Calc_fuerza/ti_th3'], 'Time', '0');
+            set_param([gcs,'/Calc_fuerza/tf_th3'], 'Time', '0');
+            set_param([gcs,'/Calc_fuerza/ti_th4'], 'Time', '0');
+            set_param([gcs,'/Calc_fuerza/tf_th4'], 'Time', '0');
+            set_param([gcs,'/Calc_fuerza/ti_th5'], 'Time', '0');
+            set_param([gcs,'/Calc_fuerza/tf_th5'], 'Time', '0');
+            set_param([gcs,'/Calc_fuerza/ti_th6'], 'Time', '0');
+            set_param([gcs,'/Calc_fuerza/tf_th6'], 'Time', '0');
+            set_param([gcs,'/Calc_fuerza/ti_th7'], 'Time', '0');
+            set_param([gcs,'/Calc_fuerza/tf_th7'], 'Time', '0');
+            set_param([gcs,'/Calc_fuerza/ti_th8'], 'Time', '0');
+            set_param([gcs,'/Calc_fuerza/tf_th8'], 'Time', '0');
+
+            % Inicializar la gráfica de los ejes del satélite
+            axis(app.OrientacionCubesat, 'equal');
+            app.OrientacionCubesat.XLim = [-1.5 1.5];
+            app.OrientacionCubesat.YLim = [-1.5 1.5];
+            app.OrientacionCubesat.ZLim = [-1.5 1.5];
+            xlabel(app.OrientacionCubesat, 'X');
+            ylabel(app.OrientacionCubesat, 'Y');
+            zlabel(app.OrientacionCubesat, 'Z');
+            grid(app.OrientacionCubesat, 'on');
+            hold(app.OrientacionCubesat, 'on');
+            legend(app.OrientacionCubesat, 'show');
+            
+            % Inicializar los vectores para los ejes del satélite
+            app.hX = quiver3(app.OrientacionCubesat, 0, 0, 0, app.x_axis(1), app.x_axis(2), app.x_axis(3), 'r', 'LineWidth', 2, 'DisplayName', 'X');
+            app.hY = quiver3(app.OrientacionCubesat, 0, 0, 0, app.y_axis(1), app.y_axis(2), app.y_axis(3), 'g', 'LineWidth', 2, 'DisplayName', 'Y');
+            app.hZ = quiver3(app.OrientacionCubesat, 0, 0, 0, app.z_axis(1), app.z_axis(2), app.z_axis(3), 'b', 'LineWidth', 2, 'DisplayName', 'Z');
+            app.hOrbit = quiver3(app.OrientacionCubesat, 0, 0, 0, app.nu_axis(1), 0, 0, 'k--', 'LineWidth', 2, 'DisplayName', 'Órbita');
+
+             % Configurar el deslizador
+            app.TiemposSlider.Limits = [0 1]; % Esto se actualizará después de cargar los datos de simulación
+            app.TiemposSlider.Value = 0;
+            app.TiemposSlider.ValueChangedFcn = createCallbackFcn(app, @TiemposSliderValueChanged, true);
+            
+        end
+
+        % Value changed function: Thruster1Switch
+        function Thruster1SwitchValueChanged(app, event)
+            app.th1use = app.Thruster1Switch.Value;
+
+            if strcmp(app.th1use,'On')
+                app.Lamp.Color = 'g';
+            else
+                app.Lamp.Color = 'r';
+                app.TiempoInicialTh1EditField.Value = 0;
+                app.TiempoFinalTh1EditField.Value = 0;
+                set_param([gcs,'/Calc_torque/ti_th1'], 'Time', '0');
+                set_param([gcs,'/Calc_torque/tf_th1'], 'Time', '0');
+                set_param([gcs,'/Calc_fuerza/ti_th1'], 'Time', '0');
+                set_param([gcs,'/Calc_fuerza/tf_th1'], 'Time', '0');
+            end
+        end
+
+        % Value changed function: Thruster2Switch
+        function Thruster2SwitchValueChanged(app, event)
+            app.th2use = app.Thruster2Switch.Value;
+
+            if strcmp(app.th2use,'On')
+                app.Lamp_2.Color = 'g';
+            else
+                app.Lamp_2.Color = 'r';
+                app.TiempoInicialTh2EditField.Value = 0;
+                app.TiempoFinalTh2EditField.Value = 0;
+                set_param([gcs,'/Calc_torque/ti_th2'], 'Time', '0');
+                set_param([gcs,'/Calc_torque/tf_th2'], 'Time', '0');
+                set_param([gcs,'/Calc_fuerza/ti_th2'], 'Time', '0');
+                set_param([gcs,'/Calc_fuerza/tf_th2'], 'Time', '0');
+            end
+        end
+
+        % Value changed function: Thruster3Switch
+        function Thruster3SwitchValueChanged(app, event)
+            app.th3use = app.Thruster3Switch.Value;
+
+            if strcmp(app.th3use,'On')
+                app.Lamp_3.Color = 'g';
+            else
+                app.Lamp_3.Color = 'r';
+                app.TiempoInicialTh3EditField.Value = 0;
+                app.TiempoFinalTh3EditField.Value = 0;
+                set_param([gcs,'/Calc_torque/ti_th3'], 'Time', '0');
+                set_param([gcs,'/Calc_torque/tf_th3'], 'Time', '0');
+                set_param([gcs,'/Calc_fuerza/ti_th3'], 'Time', '0');
+                set_param([gcs,'/Calc_fuerza/tf_th3'], 'Time', '0');
+            end
+        end
+
+        % Value changed function: Thruster4Switch
+        function Thruster4SwitchValueChanged(app, event)
+            app.th4use = app.Thruster4Switch.Value;
+
+            if strcmp(app.th4use,'On')
+                app.Lamp_4.Color = 'g';
+            else
+                app.Lamp_4.Color = 'r';
+                app.TiempoInicialTh4EditField.Value = 0;
+                app.TiempoFinalTh4EditField.Value = 0;
+                set_param([gcs,'/Calc_torque/ti_th4'], 'Time', '0');
+                set_param([gcs,'/Calc_torque/tf_th4'], 'Time', '0');
+                set_param([gcs,'/Calc_fuerza/ti_th4'], 'Time', '0');
+                set_param([gcs,'/Calc_fuerza/tf_th4'], 'Time', '0');
+            end
+        end
+
+        % Value changed function: Thruster5Switch
+        function Thruster5SwitchValueChanged(app, event)
+            app.th5use = app.Thruster5Switch.Value;
+            
+            if strcmp(app.th5use,'On')
+                app.Lamp_5.Color = 'g';
+            else
+                app.Lamp_5.Color = 'r';
+                app.TiempoInicialTh5EditField.Value = 0;
+                app.TiempoFinalTh5EditField.Value = 0;
+                set_param([gcs,'/Calc_torque/ti_th5'], 'Time', '0');
+                set_param([gcs,'/Calc_torque/tf_th5'], 'Time', '0');
+                set_param([gcs,'/Calc_fuerza/ti_th5'], 'Time', '0');
+                set_param([gcs,'/Calc_fuerza/tf_th5'], 'Time', '0');
+            end
+        end
+
+        % Value changed function: Thruster6Switch
+        function Thruster6SwitchValueChanged(app, event)
+            app.th6use = app.Thruster6Switch.Value;
+            
+            if strcmp(app.th6use,'On')
+                app.Lamp_6.Color = 'g';
+            else
+                app.Lamp_6.Color = 'r';
+                app.TiempoInicialTh6EditField.Value = 0;
+                app.TiempoFinalTh6EditField.Value = 0;
+                set_param([gcs,'/Calc_torque/ti_th6'], 'Time', '0');
+                set_param([gcs,'/Calc_torque/tf_th6'], 'Time', '0');
+                set_param([gcs,'/Calc_fuerza/ti_th6'], 'Time', '0');
+                set_param([gcs,'/Calc_fuerza/tf_th6'], 'Time', '0');
+            end
+        end
+
+        % Value changed function: Thruster7Switch
+        function Thruster7SwitchValueChanged(app, event)
+            app.th7use = app.Thruster7Switch.Value;
+
+            if strcmp(app.th7use,'On')
+                app.Lamp_7.Color = 'g';
+            else
+                app.Lamp_7.Color = 'r';
+                app.TiempoInicialTh7EditField.Value = 0;
+                app.TiempoFinalTh7EditField.Value = 0;
+                set_param([gcs,'/Calc_torque/ti_th7'], 'Time', '0');
+                set_param([gcs,'/Calc_torque/tf_th7'], 'Time', '0');
+                set_param([gcs,'/Calc_fuerza/ti_th7'], 'Time', '0');
+                set_param([gcs,'/Calc_fuerza/tf_th7'], 'Time', '0');
+            end
+        end
+
+        % Value changed function: Thruster8Switch
+        function Thruster8SwitchValueChanged(app, event)
+            app.th8use = app.Thruster8Switch.Value;
+
+            if strcmp(app.th8use,'On')
+                app.Lamp_8.Color = 'g';
+            else
+                app.Lamp_8.Color = 'r';
+                app.TiempoInicialTh8EditField.Value = 0;
+                app.TiempoFinalTh8EditField.Value = 0;
+                set_param([gcs,'/Calc_torque/ti_th8'], 'Time', '0');
+                set_param([gcs,'/Calc_torque/tf_th8'], 'Time', '0');
+                set_param([gcs,'/Calc_fuerza/ti_th8'], 'Time', '0');
+                set_param([gcs,'/Calc_fuerza/tf_th8'], 'Time', '0');
+            end
+        end
+
+        % Button pushed function: SimularButton
+        function SimularButtonPushed(app, event)
+            %Iniciar la simulación
+            set_param(gcs,'SimulationCommand', 'start');
+            pause(5);
+            simout = evalin('base', 'out');
+
+            %Extraer datos de la simulación
+            vOrb = simout.vOrb;
+            afOrb = simout.afOrb;
+            efOrb = simout.efOrb;
+            hafOrb = simout.hafOrb;
+            hpfOrb = simout.hpfOrb;
+
+            TrayOrb = simout.TrayOrb;
+            Roll = simout.Roll;
+            Pitch = simout.Pitch;   % Ángulos reales respecto a la órbita
+            Yaw = simout.Yaw;
+
+            Nu = simout.Nu;
+
+            RollRel = simout.RollRel;
+            PitchRel = simout.PitchRel;   % Ángulos relativos respecto a la órbita
+            YawRel = simout.YawRel;
+
+            %Guardamos los datos de roll, pitch y yaw
+            app.roll = deg2rad(Roll.data);
+            app.pitch = deg2rad(Pitch.data);
+            app.yaw = deg2rad(Yaw.data);
+            app.time = Roll.time;
+            app.num_steps = length(app.time);
+
+            app.nu = deg2rad(Nu.data);
+
+            %Actualizar límites del deslizador
+            app.TiemposSlider.Limits = [min(app.time) max(app.time)];
+            app.TiemposSlider.Value = min(app.time);
+
+            % Suavizar los datos de los ángulos de Euler
+            app.roll = smoothdata(app.roll, 'movmean', 1);
+            app.pitch = smoothdata(app.pitch, 'movmean', 1);
+            app.yaw = smoothdata(app.yaw, 'movmean', 1);
+
+            app.nu = smoothdata(app.nu, 'movmean', 1);
+
+            %Gráfica de progreso
+            figure('units','normalized','position',[.40 .45 .2 .05])
+            set(gcf,'numbertitle','off','name','calculation in progress...')
+            set(gcf, 'MenuBar', 'None')
+            x = 0:0.1:100;
+            y = 0:0.1:100;
+            set(gca,'Box','on')
+            set(gca,'XTickLabel',{'0%','20%','40%','60%','80%','100%'})
+            set(gca,'YTickLabel',' ')
+            xlim([0 100])
+            ylim([0 20])
+
+            hold on %drawing part
+
+            for ct = 2:1002
+                line([x(ct-1) x(ct-1)],[0 20])
+                drawnow
+            end
+
+            hold off
+
+            pause(3);
+            
+            % Actualizar campos de texto y gráficas
+            app.VelocidadkmsEditField.Value = vOrb.data(end);
+            app.SemiejeMayorkmEditField.Value = afOrb;
+            app.ExcentricidadEditField.Value = efOrb;
+            app.AlturadelAfeliokmEditField.Value = hafOrb;
+            app.AlturadelPeriheliokmEditField.Value = hpfOrb;
+
+            plot(app.VelocidadOrb, vOrb.time, vOrb.data, 'b-');
+            plot(app.TrayectoriaOrb, TrayOrb.time, TrayOrb.data, 'b-');
+            plot(app.RollEv, RollRel.time, RollRel.data, 'b-');
+            plot(app.PitchEv, PitchRel.time, PitchRel.data, 'b-');
+            plot(app.YawEv, YawRel.time, YawRel.data, 'b-');
+
+            % Actualizar el gráfico de los vectores
+            app.updatePlot(min(app.time));
+
+        end
+
+        % Value changed function: FuerzaThrustersNEditField
+        function FuerzaThrustersNEditFieldValueChanged(app, event)
+            F = app.FuerzaThrustersNEditField.Value;
+            set_param([gcs,'/F'], 'Value', num2str(F));
+        end
+
+        % Value changed function: AltitudkmEditField
+        function AltitudkmEditFieldValueChanged(app, event)
+            Altitud = app.AltitudkmEditField.Value;
+            set_param([gcs,'/Altitud'], 'Value', num2str(Altitud));
+        end
+
+        % Value changed function: MasadelCubesatKgEditField
+        function MasadelCubesatKgEditFieldValueChanged(app, event)
+            Mcubesat = app.MasadelCubesatKgEditField.Value;
+            set_param([gcs,'/Mcubesat'], 'Value', num2str(Mcubesat));
+        end
+
+        % Value changed function: LongitudEjeXmEditField
+        function LongitudEjeXmEditFieldValueChanged(app, event)
+            Lx = app.LongitudEjeXmEditField.Value;
+            set_param([gcs,'/Lx'], 'Value', num2str(Lx));
+        end
+
+        % Value changed function: LongitudEjeYmEditField
+        function LongitudEjeYmEditFieldValueChanged(app, event)
+            Ly = app.LongitudEjeYmEditField.Value;
+            set_param([gcs,'/Ly'], 'Value', num2str(Ly));
+        end
+
+        % Value changed function: LongitudEjeZmEditField
+        function LongitudEjeZmEditFieldValueChanged(app, event)
+            Lz = app.LongitudEjeZmEditField.Value;
+            set_param([gcs,'/Lz'], 'Value', num2str(Lz));
+        end
+
+        % Value changed function: YawinicialgradosEditField
+        function YawinicialgradosEditFieldValueChanged(app, event)
+            Yaw = app.YawinicialgradosEditField.Value;
+            set_param([gcs,'/Yaw'], 'Value', num2str(Yaw));
+        end
+
+        % Value changed function: PitchinicialgradosEditField
+        function PitchinicialgradosEditFieldValueChanged(app, event)
+            Pitch = app.PitchinicialgradosEditField.Value;
+            set_param([gcs,'/Pitch'], 'Value', num2str(Pitch));
+        end
+
+        % Value changed function: RollinicialgradosEditField
+        function RollinicialgradosEditFieldValueChanged(app, event)
+            Roll = app.RollinicialgradosEditField.Value;
+            set_param([gcs,'/Roll'], 'Value', num2str(Roll));
+        end
+
+        % Value changed function: TrayectoriainicialgradosEditField
+        function TrayectoriainicialgradosEditFieldValueChanged(app, event)
+            Deltai = app.TrayectoriainicialgradosEditField.Value;
+            set_param([gcs,'/Deltai'], 'Value', num2str(Deltai));
+        end
+
+        % Value changed function: TiempoInicialTh1EditField
+        function TiempoInicialTh1EditFieldValueChanged(app, event)
+            ti_th1 = app.TiempoInicialTh1EditField.Value;
+
+            if strcmp(app.th1use, 'On')
+                set_param([gcs,'/Calc_torque/ti_th1'], 'Time', num2str(ti_th1));
+                set_param([gcs,'/Calc_fuerza/ti_th1'], 'Time', num2str(ti_th1));
+            else
+                app.TiempoInicialTh1EditField.Value = 0;
+            end
+        end
+
+        % Value changed function: TiempoFinalTh1EditField
+        function TiempoFinalTh1EditFieldValueChanged(app, event)
+            tf_th1 = app.TiempoFinalTh1EditField.Value;
+
+            if strcmp(app.th1use, 'On')
+                set_param([gcs,'/Calc_torque/tf_th1'], 'Time', num2str(tf_th1));
+                set_param([gcs,'/Calc_fuerza/tf_th1'], 'Time', num2str(tf_th1));
+            else
+                app.TiempoFinalTh1EditField.Value = 0;
+            end
+        end
+
+        % Value changed function: TiempoInicialTh2EditField
+        function TiempoInicialTh2EditFieldValueChanged(app, event)
+            ti_th2 = app.TiempoInicialTh2EditField.Value;
+
+            if strcmp(app.th2use, 'On')
+                set_param([gcs,'/Calc_torque/ti_th2'], 'Time', num2str(ti_th2));
+                set_param([gcs,'/Calc_fuerza/ti_th2'], 'Time', num2str(ti_th2));
+            else
+                app.TiempoInicialTh2EditField.Value = 0;
+            end
+        end
+
+        % Value changed function: TiempoFinalTh2EditField
+        function TiempoFinalTh2EditFieldValueChanged(app, event)
+            tf_th2 = app.TiempoFinalTh2EditField.Value;
+
+            if strcmp(app.th2use, 'On')
+                set_param([gcs,'/Calc_torque/tf_th2'], 'Time', num2str(tf_th2));
+                set_param([gcs,'/Calc_fuerza/tf_th2'], 'Time', num2str(tf_th2));
+            else
+                app.TiempoFinalTh2EditField.Value = 0;
+            end
+        end
+
+        % Value changed function: TiempoInicialTh3EditField
+        function TiempoInicialTh3EditFieldValueChanged(app, event)
+            ti_th3 = app.TiempoInicialTh3EditField.Value;
+
+            if strcmp(app.th3use, 'On')
+                set_param([gcs,'/Calc_torque/ti_th3'], 'Time', num2str(ti_th3));
+                set_param([gcs,'/Calc_fuerza/ti_th3'], 'Time', num2str(ti_th3));
+            else
+                app.TiempoInicialTh3EditField.Value = 0;
+            end            
+        end
+
+        % Value changed function: TiempoFinalTh3EditField
+        function TiempoFinalTh3EditFieldValueChanged(app, event)
+            tf_th3 = app.TiempoFinalTh3EditField.Value;
+
+            if strcmp(app.th3use, 'On')
+                set_param([gcs,'/Calc_torque/tf_th3'], 'Time', num2str(tf_th3));
+                set_param([gcs,'/Calc_fuerza/tf_th3'], 'Time', num2str(tf_th3));
+            else
+                app.TiempoFinalTh3EditField.Value = 0;
+            end            
+        end
+
+        % Value changed function: TiempoInicialTh4EditField
+        function TiempoInicialTh4EditFieldValueChanged(app, event)
+            ti_th4 = app.TiempoInicialTh4EditField.Value;
+
+            if strcmp(app.th4use, 'On')
+                set_param([gcs,'/Calc_torque/ti_th4'], 'Time', num2str(ti_th4));
+                set_param([gcs,'/Calc_fuerza/ti_th4'], 'Time', num2str(ti_th4));
+            else
+                app.TiempoInicialTh4EditField.Value = 0;
+            end                
+        end
+
+        % Value changed function: TiempoFinalTh4EditField
+        function TiempoFinalTh4EditFieldValueChanged(app, event)
+            tf_th4 = app.TiempoFinalTh4EditField.Value;
+
+            if strcmp(app.th4use, 'On')
+                set_param([gcs,'/Calc_torque/tf_th4'], 'Time', num2str(tf_th4));
+                set_param([gcs,'/Calc_fuerza/tf_th4'], 'Time', num2str(tf_th4));
+            else
+                app.TiempoFinalTh4EditField.Value = 0;
+            end             
+        end
+
+        % Value changed function: TiempoInicialTh5EditField
+        function TiempoInicialTh5EditFieldValueChanged(app, event)
+            ti_th5 = app.TiempoInicialTh5EditField.Value;
+
+            if strcmp(app.th5use, 'On')
+                set_param([gcs,'/Calc_torque/ti_th5'], 'Time', num2str(ti_th5));
+                set_param([gcs,'/Calc_fuerza/ti_th5'], 'Time', num2str(ti_th5));
+            else
+                app.TiempoInicialTh5EditField.Value = 0;
+            end               
+        end
+
+        % Value changed function: TiempoFinalTh5EditField
+        function TiempoFinalTh5EditFieldValueChanged(app, event)
+            tf_th5 = app.TiempoFinalTh5EditField.Value;
+
+            if strcmp(app.th5use, 'On')
+                set_param([gcs,'/Calc_torque/tf_th5'], 'Time', num2str(tf_th5));
+                set_param([gcs,'/Calc_fuerza/tf_th5'], 'Time', num2str(tf_th5));
+            else
+                app.TiempoFinalTh5EditField.Value = 0;
+            end                
+        end
+
+        % Value changed function: TiempoInicialTh6EditField
+        function TiempoInicialTh6EditFieldValueChanged(app, event)
+            ti_th6 = app.TiempoInicialTh6EditField.Value;
+
+            if strcmp(app.th6use, 'On')
+                set_param([gcs,'/Calc_torque/ti_th6'], 'Time', num2str(ti_th6));
+                set_param([gcs,'/Calc_fuerza/ti_th6'], 'Time', num2str(ti_th6));
+            else
+                app.TiempoInicialTh6EditField.Value = 0;
+            end             
+        end
+
+        % Value changed function: TiempoFinalTh6EditField
+        function TiempoFinalTh6EditFieldValueChanged(app, event)
+            tf_th6 = app.TiempoFinalTh6EditField.Value;
+
+            if strcmp(app.th6use, 'On')
+                set_param([gcs,'/Calc_torque/tf_th6'], 'Time', num2str(tf_th6));
+                set_param([gcs,'/Calc_fuerza/tf_th6'], 'Time', num2str(tf_th6));
+            else
+                app.TiempoFinalTh6EditField.Value = 0;
+            end                
+        end
+
+        % Value changed function: TiempoInicialTh7EditField
+        function TiempoInicialTh7EditFieldValueChanged(app, event)
+            ti_th7 = app.TiempoInicialTh7EditField.Value;
+
+            if strcmp(app.th7use, 'On')
+                set_param([gcs,'/Calc_torque/ti_th7'], 'Time', num2str(ti_th7));
+                set_param([gcs,'/Calc_fuerza/ti_th7'], 'Time', num2str(ti_th7));
+            else
+                app.TiempoInicialTh7EditField.Value = 0;
+            end
+        end
+
+        % Value changed function: TiempoFinalTh7EditField
+        function TiempoFinalTh7EditFieldValueChanged(app, event)
+            tf_th7 = app.TiempoFinalTh7EditField.Value;
+
+            if strcmp(app.th7use, 'On')
+                set_param([gcs,'/Calc_torque/tf_th7'], 'Time', num2str(tf_th7));
+                set_param([gcs,'/Calc_fuerza/tf_th7'], 'Time', num2str(tf_th7));
+            else
+                app.TiempoFinalTh7EditField.Value = 0;
+            end                  
+        end
+
+        % Value changed function: TiempoInicialTh8EditField
+        function TiempoInicialTh8EditFieldValueChanged(app, event)
+            ti_th8 = app.TiempoInicialTh8EditField.Value;
+
+            if strcmp(app.th8use, 'On')
+                set_param([gcs,'/Calc_torque/ti_th8'], 'Time', num2str(ti_th8));
+                set_param([gcs,'/Calc_fuerza/ti_th8'], 'Time', num2str(ti_th8));
+            else
+                app.TiempoInicialTh8EditField.Value = 0;
+            end             
+        end
+
+        % Value changed function: TiempoFinalTh8EditField
+        function TiempoFinalTh8EditFieldValueChanged(app, event)
+            tf_th8 = app.TiempoFinalTh8EditField.Value;
+
+            if strcmp(app.th8use, 'On')
+                set_param([gcs,'/Calc_torque/tf_th8'], 'Time', num2str(tf_th8));
+                set_param([gcs,'/Calc_fuerza/tf_th8'], 'Time', num2str(tf_th8));
+            else
+                app.TiempoFinalTh8EditField.Value = 0;
+            end             
+        end
+
+        % Value changed function: TiemposEditField
+        function TiemposEditFieldValueChanged(app, event)
+            t = app.TiemposEditField.Value;
+            set_param(gcs, 'StopTime', num2str(t));
+        end
+
+        % Value changed function: TiemposSlider
+        function TiemposSliderValueChanged(app, event)
+            % Obtener el valor del slider
+            value = app.TiemposSlider.Value;
+
+            % Convertir el valor del slider visible al índice del slider invisible
+            idx = round(value / max(app.time) * app.num_steps);
+
+            % Actualizar el gráfico
+            app.updatePlot(idx);
+
+            % Actualizar el campo de edición con el tiempo actual
+            app.TiempoSimsEditField.Value = app.time(idx);
+
+        end
+
+        % Button pushed function: SimOrientacionButton
+        function SimOrientacionButtonPushed(app, event)
+            % Definir el tamaño del paso para saltar algunos puntos y acelerar la animación
+            step_size = 10; % Puedes ajustar este valor para encontrar el equilibrio entre velocidad y suavidad de la animación
+
+            % Precomputar las rotaciones
+            R_matrices = cell(app.num_steps, 1);
+            R_matorb = cell(app.num_steps,1);
+            for i = 1:app.num_steps
+                R_matrices{i} = app.eulerToRotationMatrix(app.roll(i), app.pitch(i), app.yaw(i));
+                R_matorb{i} = [cos(app.nu(i)), -sin(app.nu(i)), 0;
+                    sin(app.nu(i)), cos(app.nu(i)), 0;
+                    0, 0, 1];
+            end
+
+            % Animar la evolución de los ejes
+            for i = 1:step_size:app.num_steps
+                % Obtener la posición de los ejes en el sistema de referencia global
+                R = R_matrices{i};
+                x_global = R * app.x_axis;
+                y_global = R * app.y_axis;
+                z_global = R * app.z_axis;
+
+                Rorb = R_matorb{i};
+                nu_global = Rorb * app.nu_axis;
+
+                % Actualizar los vectores en el gráfico
+                set(app.hX, 'UData', x_global(1), 'VData', x_global(2), 'WData', x_global(3));
+                set(app.hY, 'UData', y_global(1), 'VData', y_global(2), 'WData', y_global(3));
+                set(app.hZ, 'UData', z_global(1), 'VData', z_global(2), 'WData', z_global(3));
+                set(app.hOrbit, 'UData', nu_global(1), 'VData', 0, 'WData', 0);
+
+                % Actualizar el campo de edición con el tiempo actual
+                app.TiempoSimsEditField.Value = app.time(i);
+
+                app.TiemposSlider.Value = i * max(app.time) / app.num_steps;
+
+                % Dibujar la actualización
+                drawnow;
+            end
+
+        end
+
+        % Button pushed function: ResetearButton
+        function ResetearButtonPushed(app, event)
+            % Se resetea la gráfica que representa los ejes
+            x_global = [1 0 0];
+            y_global = [0 1 0];
+            z_global = [0 0 1];
+            nu_global = [1.5 1.5 1.5];
+
+            % Resetear los vectores en el gráfico
+            set(app.hX, 'UData', x_global(1), 'VData', x_global(2), 'WData', x_global(3));
+            set(app.hY, 'UData', y_global(1), 'VData', y_global(2), 'WData', y_global(3));
+            set(app.hZ, 'UData', z_global(1), 'VData', z_global(2), 'WData', z_global(3));
+            set(app.hOrbit, 'UData', nu_global(1), 'VData', 0, 'WData', 0);
+
+            % Actualizar el campo de edición con el tiempo actual
+            app.TiempoSimsEditField.Value = app.time(1);
+
+            app.TiemposSlider.Value = 0;
+
+            % Dibujar la actualización
+            drawnow;
+
+            % Reseteo de campos de texto y gráficas
+            app.VelocidadkmsEditField.Value = 0;
+            app.SemiejeMayorkmEditField.Value = 0;
+            app.ExcentricidadEditField.Value = 0;
+            app.AlturadelAfeliokmEditField.Value = 0;
+            app.AlturadelPeriheliokmEditField.Value = 0;
+
+            plot(app.VelocidadOrb, 0, 0);
+            plot(app.TrayectoriaOrb, 0, 0);
+            plot(app.RollEv, 0, 0);
+            plot(app.PitchEv, 0, 0);
+            plot(app.YawEv, 0, 0);
+        end
+    end
+
+    % Component initialization
+    methods (Access = private)
+
+        % Create UIFigure and components
+        function createComponents(app)
+
+            % Get the file path for locating images
+            pathToMLAPP = fileparts(mfilename('fullpath'));
+
+            % Create UIFigure and hide until all components are created
+            app.UIFigure = uifigure('Visible', 'off');
+            app.UIFigure.Position = [100 100 1950 869];
+            app.UIFigure.Name = 'MATLAB App';
+            app.UIFigure.Scrollable = 'on';
+            app.UIFigure.WindowState = 'maximized';
+
+            % Create Menu
+            app.Menu = uimenu(app.UIFigure);
+            app.Menu.Text = 'Menu';
+
+            % Create VelocidadOrb
+            app.VelocidadOrb = uiaxes(app.UIFigure);
+            title(app.VelocidadOrb, 'Velocidad Orbital')
+            xlabel(app.VelocidadOrb, 'Tiempo (s)')
+            ylabel(app.VelocidadOrb, 'Velocidad (km/s)')
+            zlabel(app.VelocidadOrb, 'Z')
+            app.VelocidadOrb.Position = [1106 502 300 185];
+
+            % Create TrayectoriaOrb
+            app.TrayectoriaOrb = uiaxes(app.UIFigure);
+            title(app.TrayectoriaOrb, 'Trayectoria Orbital')
+            xlabel(app.TrayectoriaOrb, 'Tiempo (s)')
+            ylabel(app.TrayectoriaOrb, 'Radio (km)')
+            zlabel(app.TrayectoriaOrb, 'Z')
+            app.TrayectoriaOrb.Position = [1442 502 300 185];
+
+            % Create PitchEv
+            app.PitchEv = uiaxes(app.UIFigure);
+            title(app.PitchEv, 'Pitch')
+            xlabel(app.PitchEv, 'Tiempo (sec)')
+            ylabel(app.PitchEv, 'Grados (º)')
+            zlabel(app.PitchEv, 'Z')
+            app.PitchEv.Position = [1288 304 300 185];
+
+            % Create YawEv
+            app.YawEv = uiaxes(app.UIFigure);
+            title(app.YawEv, 'Yaw')
+            xlabel(app.YawEv, 'Tiempo (sec)')
+            ylabel(app.YawEv, 'Grados (º)')
+            zlabel(app.YawEv, 'Z')
+            app.YawEv.Position = [1622 304 300 185];
+
+            % Create RollEv
+            app.RollEv = uiaxes(app.UIFigure);
+            title(app.RollEv, 'Roll')
+            xlabel(app.RollEv, 'Tiempo (sec)')
+            ylabel(app.RollEv, 'Grados (º)')
+            zlabel(app.RollEv, 'Z')
+            app.RollEv.Position = [972 304 300 185];
+
+            % Create OrientacionCubesat
+            app.OrientacionCubesat = uiaxes(app.UIFigure);
+            title(app.OrientacionCubesat, 'Orientacion CubeSat')
+            xlabel(app.OrientacionCubesat, 'X')
+            ylabel(app.OrientacionCubesat, 'Y')
+            zlabel(app.OrientacionCubesat, 'Z')
+            app.OrientacionCubesat.DataAspectRatio = [1 1 1];
+            app.OrientacionCubesat.XLim = [-1.5 1.5];
+            app.OrientacionCubesat.YLim = [-1.5 1.5];
+            app.OrientacionCubesat.ZLim = [-1.5 1.5];
+            app.OrientacionCubesat.Position = [1284 72 351 214];
+
+            % Create FuerzaThrustersNLabel
+            app.FuerzaThrustersNLabel = uilabel(app.UIFigure);
+            app.FuerzaThrustersNLabel.HorizontalAlignment = 'right';
+            app.FuerzaThrustersNLabel.Position = [93 715 116 22];
+            app.FuerzaThrustersNLabel.Text = 'Fuerza Thrusters (N)';
+
+            % Create FuerzaThrustersNEditField
+            app.FuerzaThrustersNEditField = uieditfield(app.UIFigure, 'numeric');
+            app.FuerzaThrustersNEditField.ValueChangedFcn = createCallbackFcn(app, @FuerzaThrustersNEditFieldValueChanged, true);
+            app.FuerzaThrustersNEditField.Position = [220 715 100 22];
+            app.FuerzaThrustersNEditField.Value = 1;
+
+            % Create AltitudkmEditFieldLabel
+            app.AltitudkmEditFieldLabel = uilabel(app.UIFigure);
+            app.AltitudkmEditFieldLabel.HorizontalAlignment = 'right';
+            app.AltitudkmEditFieldLabel.Position = [139 660 66 22];
+            app.AltitudkmEditFieldLabel.Text = 'Altitud (km)';
+
+            % Create AltitudkmEditField
+            app.AltitudkmEditField = uieditfield(app.UIFigure, 'numeric');
+            app.AltitudkmEditField.ValueChangedFcn = createCallbackFcn(app, @AltitudkmEditFieldValueChanged, true);
+            app.AltitudkmEditField.Position = [220 660 100 22];
+            app.AltitudkmEditField.Value = 1000;
+
+            % Create MasadelCubesatKgEditFieldLabel
+            app.MasadelCubesatKgEditFieldLabel = uilabel(app.UIFigure);
+            app.MasadelCubesatKgEditFieldLabel.HorizontalAlignment = 'right';
+            app.MasadelCubesatKgEditFieldLabel.Position = [78 606 127 22];
+            app.MasadelCubesatKgEditFieldLabel.Text = 'Masa del Cubesat (Kg)';
+
+            % Create MasadelCubesatKgEditField
+            app.MasadelCubesatKgEditField = uieditfield(app.UIFigure, 'numeric');
+            app.MasadelCubesatKgEditField.ValueChangedFcn = createCallbackFcn(app, @MasadelCubesatKgEditFieldValueChanged, true);
+            app.MasadelCubesatKgEditField.Position = [220 606 100 22];
+            app.MasadelCubesatKgEditField.Value = 5;
+
+            % Create LongitudEjeXmEditFieldLabel
+            app.LongitudEjeXmEditFieldLabel = uilabel(app.UIFigure);
+            app.LongitudEjeXmEditFieldLabel.HorizontalAlignment = 'right';
+            app.LongitudEjeXmEditFieldLabel.Position = [101 552 104 22];
+            app.LongitudEjeXmEditFieldLabel.Text = 'Longitud Eje X (m)';
+
+            % Create LongitudEjeXmEditField
+            app.LongitudEjeXmEditField = uieditfield(app.UIFigure, 'numeric');
+            app.LongitudEjeXmEditField.ValueChangedFcn = createCallbackFcn(app, @LongitudEjeXmEditFieldValueChanged, true);
+            app.LongitudEjeXmEditField.Position = [220 552 100 22];
+            app.LongitudEjeXmEditField.Value = 0.1;
+
+            % Create LongitudEjeZmEditFieldLabel
+            app.LongitudEjeZmEditFieldLabel = uilabel(app.UIFigure);
+            app.LongitudEjeZmEditFieldLabel.HorizontalAlignment = 'right';
+            app.LongitudEjeZmEditFieldLabel.Position = [102 481 103 22];
+            app.LongitudEjeZmEditFieldLabel.Text = 'Longitud Eje Z (m)';
+
+            % Create LongitudEjeZmEditField
+            app.LongitudEjeZmEditField = uieditfield(app.UIFigure, 'numeric');
+            app.LongitudEjeZmEditField.ValueChangedFcn = createCallbackFcn(app, @LongitudEjeZmEditFieldValueChanged, true);
+            app.LongitudEjeZmEditField.Position = [220 481 100 22];
+            app.LongitudEjeZmEditField.Value = 0.1;
+
+            % Create LongitudEjeYmEditFieldLabel
+            app.LongitudEjeYmEditFieldLabel = uilabel(app.UIFigure);
+            app.LongitudEjeYmEditFieldLabel.HorizontalAlignment = 'right';
+            app.LongitudEjeYmEditFieldLabel.Position = [101 516 104 22];
+            app.LongitudEjeYmEditFieldLabel.Text = 'Longitud Eje Y (m)';
+
+            % Create LongitudEjeYmEditField
+            app.LongitudEjeYmEditField = uieditfield(app.UIFigure, 'numeric');
+            app.LongitudEjeYmEditField.ValueChangedFcn = createCallbackFcn(app, @LongitudEjeYmEditFieldValueChanged, true);
+            app.LongitudEjeYmEditField.Position = [220 516 100 22];
+            app.LongitudEjeYmEditField.Value = 0.1;
+
+            % Create YawinicialgradosEditFieldLabel
+            app.YawinicialgradosEditFieldLabel = uilabel(app.UIFigure);
+            app.YawinicialgradosEditFieldLabel.HorizontalAlignment = 'right';
+            app.YawinicialgradosEditFieldLabel.Position = [96 427 109 22];
+            app.YawinicialgradosEditFieldLabel.Text = 'Yaw inicial (grados)';
+
+            % Create YawinicialgradosEditField
+            app.YawinicialgradosEditField = uieditfield(app.UIFigure, 'numeric');
+            app.YawinicialgradosEditField.ValueChangedFcn = createCallbackFcn(app, @YawinicialgradosEditFieldValueChanged, true);
+            app.YawinicialgradosEditField.Position = [220 427 100 22];
+
+            % Create PitchinicialgradosEditFieldLabel
+            app.PitchinicialgradosEditFieldLabel = uilabel(app.UIFigure);
+            app.PitchinicialgradosEditFieldLabel.HorizontalAlignment = 'right';
+            app.PitchinicialgradosEditFieldLabel.Position = [92 392 113 22];
+            app.PitchinicialgradosEditFieldLabel.Text = 'Pitch inicial (grados)';
+
+            % Create PitchinicialgradosEditField
+            app.PitchinicialgradosEditField = uieditfield(app.UIFigure, 'numeric');
+            app.PitchinicialgradosEditField.ValueChangedFcn = createCallbackFcn(app, @PitchinicialgradosEditFieldValueChanged, true);
+            app.PitchinicialgradosEditField.Position = [220 392 100 22];
+
+            % Create RollinicialgradosEditFieldLabel
+            app.RollinicialgradosEditFieldLabel = uilabel(app.UIFigure);
+            app.RollinicialgradosEditFieldLabel.HorizontalAlignment = 'right';
+            app.RollinicialgradosEditFieldLabel.Position = [98 357 107 22];
+            app.RollinicialgradosEditFieldLabel.Text = 'Roll inicial (grados)';
+
+            % Create RollinicialgradosEditField
+            app.RollinicialgradosEditField = uieditfield(app.UIFigure, 'numeric');
+            app.RollinicialgradosEditField.ValueChangedFcn = createCallbackFcn(app, @RollinicialgradosEditFieldValueChanged, true);
+            app.RollinicialgradosEditField.Position = [220 357 100 22];
+
+            % Create TrayectoriainicialgradosEditFieldLabel
+            app.TrayectoriainicialgradosEditFieldLabel = uilabel(app.UIFigure);
+            app.TrayectoriainicialgradosEditFieldLabel.HorizontalAlignment = 'right';
+            app.TrayectoriainicialgradosEditFieldLabel.Position = [59 303 146 22];
+            app.TrayectoriainicialgradosEditFieldLabel.Text = 'Trayectoria inicial (grados)';
+
+            % Create TrayectoriainicialgradosEditField
+            app.TrayectoriainicialgradosEditField = uieditfield(app.UIFigure, 'numeric');
+            app.TrayectoriainicialgradosEditField.ValueChangedFcn = createCallbackFcn(app, @TrayectoriainicialgradosEditFieldValueChanged, true);
+            app.TrayectoriainicialgradosEditField.Position = [220 303 100 22];
+
+            % Create UsodeThrustersLabel
+            app.UsodeThrustersLabel = uilabel(app.UIFigure);
+            app.UsodeThrustersLabel.FontSize = 18;
+            app.UsodeThrustersLabel.Position = [609 828 143 23];
+            app.UsodeThrustersLabel.Text = 'Uso de Thrusters';
+
+            % Create TiempoInicialTh1EditFieldLabel
+            app.TiempoInicialTh1EditFieldLabel = uilabel(app.UIFigure);
+            app.TiempoInicialTh1EditFieldLabel.HorizontalAlignment = 'right';
+            app.TiempoInicialTh1EditFieldLabel.Position = [442 736 103 22];
+            app.TiempoInicialTh1EditFieldLabel.Text = 'Tiempo Inicial Th1';
+
+            % Create TiempoInicialTh1EditField
+            app.TiempoInicialTh1EditField = uieditfield(app.UIFigure, 'numeric');
+            app.TiempoInicialTh1EditField.ValueChangedFcn = createCallbackFcn(app, @TiempoInicialTh1EditFieldValueChanged, true);
+            app.TiempoInicialTh1EditField.Position = [560 736 100 22];
+
+            % Create TiempoFinalTh1EditFieldLabel
+            app.TiempoFinalTh1EditFieldLabel = uilabel(app.UIFigure);
+            app.TiempoFinalTh1EditFieldLabel.HorizontalAlignment = 'right';
+            app.TiempoFinalTh1EditFieldLabel.Position = [447 709 98 22];
+            app.TiempoFinalTh1EditFieldLabel.Text = 'Tiempo Final Th1';
+
+            % Create TiempoFinalTh1EditField
+            app.TiempoFinalTh1EditField = uieditfield(app.UIFigure, 'numeric');
+            app.TiempoFinalTh1EditField.ValueChangedFcn = createCallbackFcn(app, @TiempoFinalTh1EditFieldValueChanged, true);
+            app.TiempoFinalTh1EditField.Position = [560 709 100 22];
+
+            % Create SimularButton
+            app.SimularButton = uibutton(app.UIFigure, 'push');
+            app.SimularButton.ButtonPushedFcn = createCallbackFcn(app, @SimularButtonPushed, true);
+            app.SimularButton.Position = [139 249 100 23];
+            app.SimularButton.Text = 'Simular';
+
+            % Create Thruster1SwitchLabel
+            app.Thruster1SwitchLabel = uilabel(app.UIFigure);
+            app.Thruster1SwitchLabel.HorizontalAlignment = 'center';
+            app.Thruster1SwitchLabel.Position = [522 783 59 22];
+            app.Thruster1SwitchLabel.Text = 'Thruster 1';
+
+            % Create Thruster1Switch
+            app.Thruster1Switch = uiswitch(app.UIFigure, 'slider');
+            app.Thruster1Switch.ValueChangedFcn = createCallbackFcn(app, @Thruster1SwitchValueChanged, true);
+            app.Thruster1Switch.Position = [528 764 45 20];
+
+            % Create TiempoFinalTh2EditField_2Label
+            app.TiempoFinalTh2EditField_2Label = uilabel(app.UIFigure);
+            app.TiempoFinalTh2EditField_2Label.HorizontalAlignment = 'right';
+            app.TiempoFinalTh2EditField_2Label.Position = [447 588 98 22];
+            app.TiempoFinalTh2EditField_2Label.Text = 'Tiempo Final Th2';
+
+            % Create TiempoFinalTh2EditField
+            app.TiempoFinalTh2EditField = uieditfield(app.UIFigure, 'numeric');
+            app.TiempoFinalTh2EditField.ValueChangedFcn = createCallbackFcn(app, @TiempoFinalTh2EditFieldValueChanged, true);
+            app.TiempoFinalTh2EditField.Position = [560 588 100 22];
+
+            % Create Thruster2Switch_2Label
+            app.Thruster2Switch_2Label = uilabel(app.UIFigure);
+            app.Thruster2Switch_2Label.HorizontalAlignment = 'center';
+            app.Thruster2Switch_2Label.Position = [522 662 59 22];
+            app.Thruster2Switch_2Label.Text = 'Thruster 2';
+
+            % Create Thruster2Switch
+            app.Thruster2Switch = uiswitch(app.UIFigure, 'slider');
+            app.Thruster2Switch.ValueChangedFcn = createCallbackFcn(app, @Thruster2SwitchValueChanged, true);
+            app.Thruster2Switch.Position = [528 643 45 20];
+
+            % Create TiempoInicialTh2EditField_2Label
+            app.TiempoInicialTh2EditField_2Label = uilabel(app.UIFigure);
+            app.TiempoInicialTh2EditField_2Label.HorizontalAlignment = 'right';
+            app.TiempoInicialTh2EditField_2Label.Position = [442 615 103 22];
+            app.TiempoInicialTh2EditField_2Label.Text = 'Tiempo Inicial Th2';
+
+            % Create TiempoInicialTh2EditField
+            app.TiempoInicialTh2EditField = uieditfield(app.UIFigure, 'numeric');
+            app.TiempoInicialTh2EditField.ValueChangedFcn = createCallbackFcn(app, @TiempoInicialTh2EditFieldValueChanged, true);
+            app.TiempoInicialTh2EditField.Position = [560 615 100 22];
+
+            % Create TiempoFinalTh3EditFieldLabel
+            app.TiempoFinalTh3EditFieldLabel = uilabel(app.UIFigure);
+            app.TiempoFinalTh3EditFieldLabel.HorizontalAlignment = 'right';
+            app.TiempoFinalTh3EditFieldLabel.Position = [447 467 98 22];
+            app.TiempoFinalTh3EditFieldLabel.Text = 'Tiempo Final Th3';
+
+            % Create TiempoFinalTh3EditField
+            app.TiempoFinalTh3EditField = uieditfield(app.UIFigure, 'numeric');
+            app.TiempoFinalTh3EditField.ValueChangedFcn = createCallbackFcn(app, @TiempoFinalTh3EditFieldValueChanged, true);
+            app.TiempoFinalTh3EditField.Position = [560 467 100 22];
+
+            % Create Thruster3SwitchLabel
+            app.Thruster3SwitchLabel = uilabel(app.UIFigure);
+            app.Thruster3SwitchLabel.HorizontalAlignment = 'center';
+            app.Thruster3SwitchLabel.Position = [522 541 59 22];
+            app.Thruster3SwitchLabel.Text = 'Thruster 3';
+
+            % Create Thruster3Switch
+            app.Thruster3Switch = uiswitch(app.UIFigure, 'slider');
+            app.Thruster3Switch.ValueChangedFcn = createCallbackFcn(app, @Thruster3SwitchValueChanged, true);
+            app.Thruster3Switch.Position = [528 522 45 20];
+
+            % Create TiempoInicialTh3EditFieldLabel
+            app.TiempoInicialTh3EditFieldLabel = uilabel(app.UIFigure);
+            app.TiempoInicialTh3EditFieldLabel.HorizontalAlignment = 'right';
+            app.TiempoInicialTh3EditFieldLabel.Position = [442 494 103 22];
+            app.TiempoInicialTh3EditFieldLabel.Text = 'Tiempo Inicial Th3';
+
+            % Create TiempoInicialTh3EditField
+            app.TiempoInicialTh3EditField = uieditfield(app.UIFigure, 'numeric');
+            app.TiempoInicialTh3EditField.ValueChangedFcn = createCallbackFcn(app, @TiempoInicialTh3EditFieldValueChanged, true);
+            app.TiempoInicialTh3EditField.Position = [560 494 100 22];
+
+            % Create TiempoFinalTh4EditFieldLabel
+            app.TiempoFinalTh4EditFieldLabel = uilabel(app.UIFigure);
+            app.TiempoFinalTh4EditFieldLabel.HorizontalAlignment = 'right';
+            app.TiempoFinalTh4EditFieldLabel.Position = [447 346 98 22];
+            app.TiempoFinalTh4EditFieldLabel.Text = 'Tiempo Final Th4';
+
+            % Create TiempoFinalTh4EditField
+            app.TiempoFinalTh4EditField = uieditfield(app.UIFigure, 'numeric');
+            app.TiempoFinalTh4EditField.ValueChangedFcn = createCallbackFcn(app, @TiempoFinalTh4EditFieldValueChanged, true);
+            app.TiempoFinalTh4EditField.Position = [560 346 100 22];
+
+            % Create Thruster4SwitchLabel
+            app.Thruster4SwitchLabel = uilabel(app.UIFigure);
+            app.Thruster4SwitchLabel.HorizontalAlignment = 'center';
+            app.Thruster4SwitchLabel.Position = [522 420 59 22];
+            app.Thruster4SwitchLabel.Text = 'Thruster 4';
+
+            % Create Thruster4Switch
+            app.Thruster4Switch = uiswitch(app.UIFigure, 'slider');
+            app.Thruster4Switch.ValueChangedFcn = createCallbackFcn(app, @Thruster4SwitchValueChanged, true);
+            app.Thruster4Switch.Position = [528 401 45 20];
+
+            % Create TiempoInicialTh4EditFieldLabel
+            app.TiempoInicialTh4EditFieldLabel = uilabel(app.UIFigure);
+            app.TiempoInicialTh4EditFieldLabel.HorizontalAlignment = 'right';
+            app.TiempoInicialTh4EditFieldLabel.Position = [442 373 103 22];
+            app.TiempoInicialTh4EditFieldLabel.Text = 'Tiempo Inicial Th4';
+
+            % Create TiempoInicialTh4EditField
+            app.TiempoInicialTh4EditField = uieditfield(app.UIFigure, 'numeric');
+            app.TiempoInicialTh4EditField.ValueChangedFcn = createCallbackFcn(app, @TiempoInicialTh4EditFieldValueChanged, true);
+            app.TiempoInicialTh4EditField.Position = [560 373 100 22];
+
+            % Create TiempoFinalTh5EditFieldLabel
+            app.TiempoFinalTh5EditFieldLabel = uilabel(app.UIFigure);
+            app.TiempoFinalTh5EditFieldLabel.HorizontalAlignment = 'right';
+            app.TiempoFinalTh5EditFieldLabel.Position = [705 709 98 22];
+            app.TiempoFinalTh5EditFieldLabel.Text = 'Tiempo Final Th5';
+
+            % Create TiempoFinalTh5EditField
+            app.TiempoFinalTh5EditField = uieditfield(app.UIFigure, 'numeric');
+            app.TiempoFinalTh5EditField.ValueChangedFcn = createCallbackFcn(app, @TiempoFinalTh5EditFieldValueChanged, true);
+            app.TiempoFinalTh5EditField.Position = [818 709 100 22];
+
+            % Create Thruster5SwitchLabel
+            app.Thruster5SwitchLabel = uilabel(app.UIFigure);
+            app.Thruster5SwitchLabel.HorizontalAlignment = 'center';
+            app.Thruster5SwitchLabel.Position = [780 783 59 22];
+            app.Thruster5SwitchLabel.Text = 'Thruster 5';
+
+            % Create Thruster5Switch
+            app.Thruster5Switch = uiswitch(app.UIFigure, 'slider');
+            app.Thruster5Switch.ValueChangedFcn = createCallbackFcn(app, @Thruster5SwitchValueChanged, true);
+            app.Thruster5Switch.Position = [786 764 45 20];
+
+            % Create TiempoInicialTh5EditFieldLabel
+            app.TiempoInicialTh5EditFieldLabel = uilabel(app.UIFigure);
+            app.TiempoInicialTh5EditFieldLabel.HorizontalAlignment = 'right';
+            app.TiempoInicialTh5EditFieldLabel.Position = [700 736 103 22];
+            app.TiempoInicialTh5EditFieldLabel.Text = 'Tiempo Inicial Th5';
+
+            % Create TiempoInicialTh5EditField
+            app.TiempoInicialTh5EditField = uieditfield(app.UIFigure, 'numeric');
+            app.TiempoInicialTh5EditField.ValueChangedFcn = createCallbackFcn(app, @TiempoInicialTh5EditFieldValueChanged, true);
+            app.TiempoInicialTh5EditField.Position = [818 736 100 22];
+
+            % Create TiempoFinalTh7EditFieldLabel
+            app.TiempoFinalTh7EditFieldLabel = uilabel(app.UIFigure);
+            app.TiempoFinalTh7EditFieldLabel.HorizontalAlignment = 'right';
+            app.TiempoFinalTh7EditFieldLabel.Position = [705 467 98 22];
+            app.TiempoFinalTh7EditFieldLabel.Text = 'Tiempo Final Th7';
+
+            % Create TiempoFinalTh7EditField
+            app.TiempoFinalTh7EditField = uieditfield(app.UIFigure, 'numeric');
+            app.TiempoFinalTh7EditField.ValueChangedFcn = createCallbackFcn(app, @TiempoFinalTh7EditFieldValueChanged, true);
+            app.TiempoFinalTh7EditField.Position = [818 467 100 22];
+
+            % Create Thruster7SwitchLabel
+            app.Thruster7SwitchLabel = uilabel(app.UIFigure);
+            app.Thruster7SwitchLabel.HorizontalAlignment = 'center';
+            app.Thruster7SwitchLabel.Position = [780 541 59 22];
+            app.Thruster7SwitchLabel.Text = 'Thruster 7';
+
+            % Create Thruster7Switch
+            app.Thruster7Switch = uiswitch(app.UIFigure, 'slider');
+            app.Thruster7Switch.ValueChangedFcn = createCallbackFcn(app, @Thruster7SwitchValueChanged, true);
+            app.Thruster7Switch.Position = [786 522 45 20];
+
+            % Create TiempoInicialTh7EditFieldLabel
+            app.TiempoInicialTh7EditFieldLabel = uilabel(app.UIFigure);
+            app.TiempoInicialTh7EditFieldLabel.HorizontalAlignment = 'right';
+            app.TiempoInicialTh7EditFieldLabel.Position = [700 494 103 22];
+            app.TiempoInicialTh7EditFieldLabel.Text = 'Tiempo Inicial Th7';
+
+            % Create TiempoInicialTh7EditField
+            app.TiempoInicialTh7EditField = uieditfield(app.UIFigure, 'numeric');
+            app.TiempoInicialTh7EditField.ValueChangedFcn = createCallbackFcn(app, @TiempoInicialTh7EditFieldValueChanged, true);
+            app.TiempoInicialTh7EditField.Position = [818 494 100 22];
+
+            % Create TiempoFinalTh6EditFieldLabel
+            app.TiempoFinalTh6EditFieldLabel = uilabel(app.UIFigure);
+            app.TiempoFinalTh6EditFieldLabel.HorizontalAlignment = 'right';
+            app.TiempoFinalTh6EditFieldLabel.Position = [706 588 98 22];
+            app.TiempoFinalTh6EditFieldLabel.Text = 'Tiempo Final Th6';
+
+            % Create TiempoFinalTh6EditField
+            app.TiempoFinalTh6EditField = uieditfield(app.UIFigure, 'numeric');
+            app.TiempoFinalTh6EditField.ValueChangedFcn = createCallbackFcn(app, @TiempoFinalTh6EditFieldValueChanged, true);
+            app.TiempoFinalTh6EditField.Position = [819 588 100 22];
+
+            % Create Thruster6SwitchLabel
+            app.Thruster6SwitchLabel = uilabel(app.UIFigure);
+            app.Thruster6SwitchLabel.HorizontalAlignment = 'center';
+            app.Thruster6SwitchLabel.Position = [781 662 59 22];
+            app.Thruster6SwitchLabel.Text = 'Thruster 6';
+
+            % Create Thruster6Switch
+            app.Thruster6Switch = uiswitch(app.UIFigure, 'slider');
+            app.Thruster6Switch.ValueChangedFcn = createCallbackFcn(app, @Thruster6SwitchValueChanged, true);
+            app.Thruster6Switch.Position = [787 643 45 20];
+
+            % Create TiempoInicialTh6EditFieldLabel
+            app.TiempoInicialTh6EditFieldLabel = uilabel(app.UIFigure);
+            app.TiempoInicialTh6EditFieldLabel.HorizontalAlignment = 'right';
+            app.TiempoInicialTh6EditFieldLabel.Position = [701 615 103 22];
+            app.TiempoInicialTh6EditFieldLabel.Text = 'Tiempo Inicial Th6';
+
+            % Create TiempoInicialTh6EditField
+            app.TiempoInicialTh6EditField = uieditfield(app.UIFigure, 'numeric');
+            app.TiempoInicialTh6EditField.ValueChangedFcn = createCallbackFcn(app, @TiempoInicialTh6EditFieldValueChanged, true);
+            app.TiempoInicialTh6EditField.Position = [819 615 100 22];
+
+            % Create TiempoFinalTh8EditFieldLabel
+            app.TiempoFinalTh8EditFieldLabel = uilabel(app.UIFigure);
+            app.TiempoFinalTh8EditFieldLabel.HorizontalAlignment = 'right';
+            app.TiempoFinalTh8EditFieldLabel.Position = [705 347 98 22];
+            app.TiempoFinalTh8EditFieldLabel.Text = 'Tiempo Final Th8';
+
+            % Create TiempoFinalTh8EditField
+            app.TiempoFinalTh8EditField = uieditfield(app.UIFigure, 'numeric');
+            app.TiempoFinalTh8EditField.ValueChangedFcn = createCallbackFcn(app, @TiempoFinalTh8EditFieldValueChanged, true);
+            app.TiempoFinalTh8EditField.Position = [818 347 100 22];
+
+            % Create Thruster8SwitchLabel
+            app.Thruster8SwitchLabel = uilabel(app.UIFigure);
+            app.Thruster8SwitchLabel.HorizontalAlignment = 'center';
+            app.Thruster8SwitchLabel.Position = [780 421 59 22];
+            app.Thruster8SwitchLabel.Text = 'Thruster 8';
+
+            % Create Thruster8Switch
+            app.Thruster8Switch = uiswitch(app.UIFigure, 'slider');
+            app.Thruster8Switch.ValueChangedFcn = createCallbackFcn(app, @Thruster8SwitchValueChanged, true);
+            app.Thruster8Switch.Position = [786 402 45 20];
+
+            % Create TiempoInicialTh8EditFieldLabel
+            app.TiempoInicialTh8EditFieldLabel = uilabel(app.UIFigure);
+            app.TiempoInicialTh8EditFieldLabel.HorizontalAlignment = 'right';
+            app.TiempoInicialTh8EditFieldLabel.Position = [700 374 103 22];
+            app.TiempoInicialTh8EditFieldLabel.Text = 'Tiempo Inicial Th8';
+
+            % Create TiempoInicialTh8EditField
+            app.TiempoInicialTh8EditField = uieditfield(app.UIFigure, 'numeric');
+            app.TiempoInicialTh8EditField.ValueChangedFcn = createCallbackFcn(app, @TiempoInicialTh8EditFieldValueChanged, true);
+            app.TiempoInicialTh8EditField.Position = [818 374 100 22];
+
+            % Create Lamp
+            app.Lamp = uilamp(app.UIFigure);
+            app.Lamp.Position = [618 773 20 20];
+            app.Lamp.Color = [1 0 0];
+
+            % Create Lamp_2
+            app.Lamp_2 = uilamp(app.UIFigure);
+            app.Lamp_2.Position = [618 653 20 20];
+            app.Lamp_2.Color = [1 0 0];
+
+            % Create Lamp_3
+            app.Lamp_3 = uilamp(app.UIFigure);
+            app.Lamp_3.Position = [618 531 20 20];
+            app.Lamp_3.Color = [1 0 0];
+
+            % Create Lamp_4
+            app.Lamp_4 = uilamp(app.UIFigure);
+            app.Lamp_4.Position = [618 415 20 20];
+            app.Lamp_4.Color = [1 0 0];
+
+            % Create Lamp_5
+            app.Lamp_5 = uilamp(app.UIFigure);
+            app.Lamp_5.Position = [876 774 20 20];
+            app.Lamp_5.Color = [1 0 0];
+
+            % Create Lamp_6
+            app.Lamp_6 = uilamp(app.UIFigure);
+            app.Lamp_6.Position = [876 654 20 20];
+            app.Lamp_6.Color = [1 0 0];
+
+            % Create Lamp_7
+            app.Lamp_7 = uilamp(app.UIFigure);
+            app.Lamp_7.Position = [876 532 20 20];
+            app.Lamp_7.Color = [1 0 0];
+
+            % Create Lamp_8
+            app.Lamp_8 = uilamp(app.UIFigure);
+            app.Lamp_8.Position = [876 412 20 20];
+            app.Lamp_8.Color = [1 0 0];
+
+            % Create TiemposEditFieldLabel
+            app.TiemposEditFieldLabel = uilabel(app.UIFigure);
+            app.TiemposEditFieldLabel.HorizontalAlignment = 'right';
+            app.TiemposEditFieldLabel.Position = [147 770 62 22];
+            app.TiemposEditFieldLabel.Text = 'Tiempo (s)';
+
+            % Create TiemposEditField
+            app.TiemposEditField = uieditfield(app.UIFigure, 'numeric');
+            app.TiemposEditField.ValueChangedFcn = createCallbackFcn(app, @TiemposEditFieldValueChanged, true);
+            app.TiemposEditField.Position = [220 770 100 22];
+            app.TiemposEditField.Value = 10;
+
+            % Create ResultadosOrbitalesydeActitudLabel
+            app.ResultadosOrbitalesydeActitudLabel = uilabel(app.UIFigure);
+            app.ResultadosOrbitalesydeActitudLabel.FontSize = 18;
+            app.ResultadosOrbitalesydeActitudLabel.Position = [1297 828 273 23];
+            app.ResultadosOrbitalesydeActitudLabel.Text = 'Resultados Orbitales y de Actitud';
+
+            % Create VelocidadkmsEditFieldLabel
+            app.VelocidadkmsEditFieldLabel = uilabel(app.UIFigure);
+            app.VelocidadkmsEditFieldLabel.HorizontalAlignment = 'right';
+            app.VelocidadkmsEditFieldLabel.Position = [1192 777 94 22];
+            app.VelocidadkmsEditFieldLabel.Text = 'Velocidad (km/s)';
+
+            % Create VelocidadkmsEditField
+            app.VelocidadkmsEditField = uieditfield(app.UIFigure, 'numeric');
+            app.VelocidadkmsEditField.Position = [1301 777 100 22];
+
+            % Create SemiejeMayorkmEditFieldLabel
+            app.SemiejeMayorkmEditFieldLabel = uilabel(app.UIFigure);
+            app.SemiejeMayorkmEditFieldLabel.HorizontalAlignment = 'right';
+            app.SemiejeMayorkmEditFieldLabel.Position = [1458 775 112 22];
+            app.SemiejeMayorkmEditFieldLabel.Text = 'Semieje Mayor (km)';
+
+            % Create SemiejeMayorkmEditField
+            app.SemiejeMayorkmEditField = uieditfield(app.UIFigure, 'numeric');
+            app.SemiejeMayorkmEditField.Position = [1585 775 100 22];
+
+            % Create ExcentricidadEditFieldLabel
+            app.ExcentricidadEditFieldLabel = uilabel(app.UIFigure);
+            app.ExcentricidadEditFieldLabel.HorizontalAlignment = 'right';
+            app.ExcentricidadEditFieldLabel.Position = [1211 704 77 22];
+            app.ExcentricidadEditFieldLabel.Text = 'Excentricidad';
+
+            % Create ExcentricidadEditField
+            app.ExcentricidadEditField = uieditfield(app.UIFigure, 'numeric');
+            app.ExcentricidadEditField.Position = [1303 704 100 22];
+
+            % Create AlturadelAfeliokmEditFieldLabel
+            app.AlturadelAfeliokmEditFieldLabel = uilabel(app.UIFigure);
+            app.AlturadelAfeliokmEditFieldLabel.HorizontalAlignment = 'right';
+            app.AlturadelAfeliokmEditFieldLabel.Position = [1173 745 115 22];
+            app.AlturadelAfeliokmEditFieldLabel.Text = 'Altura del Afelio (km)';
+
+            % Create AlturadelAfeliokmEditField
+            app.AlturadelAfeliokmEditField = uieditfield(app.UIFigure, 'numeric');
+            app.AlturadelAfeliokmEditField.Position = [1303 745 100 22];
+
+            % Create AlturadelPeriheliokmEditFieldLabel
+            app.AlturadelPeriheliokmEditFieldLabel = uilabel(app.UIFigure);
+            app.AlturadelPeriheliokmEditFieldLabel.HorizontalAlignment = 'right';
+            app.AlturadelPeriheliokmEditFieldLabel.Position = [1437 745 133 22];
+            app.AlturadelPeriheliokmEditFieldLabel.Text = 'Altura del Perihelio (km)';
+
+            % Create AlturadelPeriheliokmEditField
+            app.AlturadelPeriheliokmEditField = uieditfield(app.UIFigure, 'numeric');
+            app.AlturadelPeriheliokmEditField.Position = [1585 745 100 22];
+
+            % Create ParmetrosdeCubeSatyrbitaLabel
+            app.ParmetrosdeCubeSatyrbitaLabel = uilabel(app.UIFigure);
+            app.ParmetrosdeCubeSatyrbitaLabel.FontSize = 18;
+            app.ParmetrosdeCubeSatyrbitaLabel.Position = [73 828 269 23];
+            app.ParmetrosdeCubeSatyrbitaLabel.Text = 'Parámetros de CubeSat y Órbita';
+
+            % Create TiemposSliderLabel
+            app.TiemposSliderLabel = uilabel(app.UIFigure);
+            app.TiemposSliderLabel.HorizontalAlignment = 'right';
+            app.TiemposSliderLabel.Position = [1271 58 62 22];
+            app.TiemposSliderLabel.Text = 'Tiempo (s)';
+
+            % Create TiemposSlider
+            app.TiemposSlider = uislider(app.UIFigure);
+            app.TiemposSlider.Limits = [0 10];
+            app.TiemposSlider.ValueChangedFcn = createCallbackFcn(app, @TiemposSliderValueChanged, true);
+            app.TiemposSlider.Position = [1354 67 234 3];
+
+            % Create SimOrientacionButton
+            app.SimOrientacionButton = uibutton(app.UIFigure, 'push');
+            app.SimOrientacionButton.ButtonPushedFcn = createCallbackFcn(app, @SimOrientacionButtonPushed, true);
+            app.SimOrientacionButton.Position = [1584 217 100 23];
+            app.SimOrientacionButton.Text = 'Sim Orientacion';
+
+            % Create ResetearButton
+            app.ResetearButton = uibutton(app.UIFigure, 'push');
+            app.ResetearButton.ButtonPushedFcn = createCallbackFcn(app, @ResetearButtonPushed, true);
+            app.ResetearButton.Position = [1523 703 100 23];
+            app.ResetearButton.Text = 'Resetear';
+
+            % Create Image
+            app.Image = uiimage(app.UIFigure);
+            app.Image.Position = [409 -20 544 396];
+            app.Image.ImageSource = fullfile(pathToMLAPP, 'Captura de pantalla 2024-07-13 123438.png');
+
+            % Create TiempoSimsEditFieldLabel
+            app.TiempoSimsEditFieldLabel = uilabel(app.UIFigure);
+            app.TiempoSimsEditFieldLabel.HorizontalAlignment = 'right';
+            app.TiempoSimsEditFieldLabel.Position = [1615 191 87 22];
+            app.TiempoSimsEditFieldLabel.Text = 'Tiempo Sim (s)';
+
+            % Create TiempoSimsEditField
+            app.TiempoSimsEditField = uieditfield(app.UIFigure, 'numeric');
+            app.TiempoSimsEditField.Position = [1629 170 68 22];
+
+            % Show the figure after all components are created
+            app.UIFigure.Visible = 'on';
+        end
+    end
+
+    % App creation and deletion
+    methods (Access = public)
+
+        % Construct app
+        function app = Cubesat_APP
+
+            % Create UIFigure and components
+            createComponents(app)
+
+            % Register the app with App Designer
+            registerApp(app, app.UIFigure)
+
+            % Execute the startup function
+            runStartupFcn(app, @startupFcn)
+
+            if nargout == 0
+                clear app
+            end
+        end
+
+        % Code that executes before app deletion
+        function delete(app)
+
+            % Delete UIFigure when app is deleted
+            delete(app.UIFigure)
+        end
+    end
+end
